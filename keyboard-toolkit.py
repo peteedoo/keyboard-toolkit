@@ -246,14 +246,14 @@ def run_gui():
 
         cols = 3 if root.winfo_width() > 900 else 2
         for i, t in enumerate(tools_to_show):
-            card = Frame(parent, bg="#16213e", highlightbackground="#2a2a4e", highlightthickness=1)
+            card = Frame(parent, bg="#16213e", highlightbackground="#4a4a7e", highlightthickness=1)
             card.grid(row=i//cols, column=i%cols, padx=8, pady=8, sticky="nsew")
             cards.append(card)
 
             # Header: name + stars
             h = Frame(card, bg="#16213e")
             h.pack(fill=X, padx=10, pady=(10,0))
-            Label(h, text=t["n"], font=f_card, bg="#16213e", fg="#eaeaea", anchor="w").pack(side=LEFT)
+            Label(h, text=t["n"], font=f_card, bg="#16213e", fg="#ffffff", anchor="w").pack(side=LEFT)
             if t["s"] != "N/A":
                 Label(h, text=f" {t['s']}", font=f_small, bg="#16213e", fg="#fbbf24").pack(side=RIGHT)
 
@@ -262,12 +262,12 @@ def run_gui():
             b.pack(fill=X, padx=10, pady=(2,0))
             cat_color = next((col for c,_,col in CATEGORIES if c == t["c"]), "#666")
             Label(b, text=f" {t['c']} ", font=f_small, bg=cat_color, fg="white").pack(side=LEFT)
-            Label(b, text=f" {t['l']} ", font=f_small, bg="#1a1a3e", fg="#a0a0b0").pack(side=LEFT, padx=(4,0))
-            Label(b, text=f" {t['p']} ", font=f_small, bg="#0f3460", fg="#90cdf4").pack(side=RIGHT)
+            Label(b, text=f" {t['l']} ", font=f_small, bg="#2a2a5e", fg="#d0d8f0").pack(side=LEFT, padx=(4,0))
+            Label(b, text=f" {t['p']} ", font=f_small, bg="#0f3460", fg="#a8d4ff").pack(side=RIGHT)
 
             # Description
-            Label(card, text=t["d"], font=f_desc, bg="#16213e", fg="#a0a0b0",
-                  wraplength=300 if cols==3 else 220, justify=LEFT, anchor="nw").pack(
+            Label(card, text=t["d"], font=f_desc, bg="#16213e", fg="#c8d0e8",
+                  wraplength=340 if cols==3 else 260, justify=LEFT, anchor="nw").pack(
                 fill=X, padx=10, pady=(6,4))
 
             # Buttons
@@ -283,7 +283,7 @@ def run_gui():
                            cursor="hand2", relief="solid", bd=1)
                 btn.pack(side=LEFT, padx=(0,4))
                 btn.bind("<Button-1>", make_open(t["w"]))
-                gh_btn = Label(btns, text=" GitHub ", font=f_btn, bg="#1a1a3e", fg="#a0a0b0",
+                gh_btn = Label(btns, text=" GitHub ", font=f_btn, bg="#1a1a3e", fg="#b8c4d8",
                               cursor="hand2", relief="solid", bd=1)
                 gh_btn.pack(side=LEFT, padx=(0,4))
                 gh_btn.bind("<Button-1>", make_open(t["u"]))
@@ -293,7 +293,7 @@ def run_gui():
                 btn.pack(side=LEFT, padx=(0,4))
                 btn.bind("<Button-1>", make_open(url))
 
-            copy_btn = Label(btns, text=" Copy Install ", font=f_btn, bg="#1a1a3e", fg="#a0a0b0",
+            copy_btn = Label(btns, text=" Copy Install ", font=f_btn, bg="#1a1a3e", fg="#b8c4d8",
                             cursor="hand2", relief="solid", bd=1)
             copy_btn.pack(side=RIGHT)
             def make_copy(inst):
@@ -338,11 +338,11 @@ def run_gui():
     top = Frame(root, bg="#0d1b2a", height=60)
     top.pack(fill=X)
     top.pack_propagate(False)
-    Label(top, text="Open Source Keyboard Toolkit", font=f_title, bg="#0d1b2a", fg="#eaeaea").pack(side=LEFT, padx=20)
+    Label(top, text="Open Source Keyboard Toolkit", font=f_title, bg="#0d1b2a", fg="#ffffff").pack(side=LEFT, padx=20)
 
     search_frame = Frame(top, bg="#0d1b2a")
     search_frame.pack(side=RIGHT, padx=20)
-    Label(search_frame, text="Search:", font=f_sub, bg="#0d1b2a", fg="#a0a0b0").pack(side=LEFT)
+    Label(search_frame, text="Search:", font=f_sub, bg="#0d1b2a", fg="#b8c4d8").pack(side=LEFT)
     search_entry = Entry(search_frame, textvariable=search_var, font=f_sub, bg="#0f3460", fg="#eaeaea",
                         insertbackground="#eaeaea", width=30, relief="flat")
     search_entry.pack(side=LEFT, padx=(5,0))
@@ -357,7 +357,7 @@ def run_gui():
     sidebar.pack(side=LEFT, fill=Y)
     sidebar.pack_propagate(False)
 
-    Label(sidebar, text="Categories", font=f_sub, bg="#0d1b2a", fg="#a0a0b0").pack(pady=(15,5))
+    Label(sidebar, text="Categories", font=f_sub, bg="#0d1b2a", fg="#b8c4d8").pack(pady=(15,5))
 
     cat_buttons = []
     def make_cat_btn(cat_name, color):
@@ -368,7 +368,7 @@ def run_gui():
                 if c == cat_name:
                     b.config(bg=color, fg="white", font=f_btn)
                 else:
-                    b.config(bg="#0d1b2a", fg="#a0a0b0", font=f_sub)
+                    b.config(bg="#0d1b2a", fg="#b8c4d8", font=f_sub)
             refresh()
         return on_click
 
@@ -381,14 +381,14 @@ def run_gui():
 
     for cat_name, cat_desc, cat_color in CATEGORIES:
         n = len([t for t in TOOLS if t["c"] == cat_name])
-        btn = Label(sidebar, text=f"{cat_name} ({n})", font=f_sub, bg="#0d1b2a", fg="#a0a0b0",
+        btn = Label(sidebar, text=f"{cat_name} ({n})", font=f_sub, bg="#0d1b2a", fg="#b8c4d8",
                    cursor="hand2", anchor="w", padx=15)
         btn.pack(fill=X, pady=2)
         btn.bind("<Button-1>", lambda e, c=cat_name, col=cat_color: make_cat_btn(c, col)())
         cat_buttons.append((btn, cat_name))
 
     # Count label
-    count_label = Label(sidebar, text=f"{len(TOOLS)} tools", font=f_small, bg="#0d1b2a", fg="#a0a0b0")
+    count_label = Label(sidebar, text=f"{len(TOOLS)} tools", font=f_small, bg="#0d1b2a", fg="#b8c4d8")
     count_label.pack(side=BOTTOM, pady=10)
 
     # Scrollable content area
@@ -416,7 +416,7 @@ def run_gui():
     status.pack(fill=X, side=BOTTOM)
     status.pack_propagate(False)
     status_label = Label(status, text=f"{len(TOOLS)} tools loaded | Select a category or search",
-                         font=f_small, bg="#0d1b2a", fg="#a0a0b0")
+                         font=f_small, bg="#0d1b2a", fg="#b8c4d8")
     status_label.pack(side=LEFT, padx=10)
 
     # Mouse wheel scrolling
